@@ -1,0 +1,37 @@
+{
+  "name": "serojs-abi",
+  "namespace": "sero",
+  "version": "0.17.0-alpha",
+  "description": "Sero contract abi tools",
+  "main": [
+    "./dist/serojs-abi.js",
+    "./dist/serojs-abi.min.js"
+  ],
+  "dependencies": {
+    "bignumber.js": ">=2.0.0",
+    "crypto-js": "~3.1.4"
+  },
+  "keywords": [
+    "sero",
+    "contract",
+    "abi"
+  ],
+  "license": "LGPL-3.0",
+  "ignore": [
+    "example",
+    "lib",
+    "node_modules",
+    "package.json",
+    "package.js",
+    ".versions",
+    ".bowerrc",
+    ".editorconfig",
+    ".gitignore",
+    ".jshintrc",
+    ".npmignore",
+    ".travis.yml",
+    "gulpfile.js",
+    "index.js",
+    "**/*.txt"
+  ]
+}
