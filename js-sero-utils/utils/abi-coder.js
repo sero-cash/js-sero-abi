@@ -699,7 +699,7 @@ function pack(coders, values) {
     });
     return data;
 }
-function packPrefix(coders, values) {
+function getAllAddress(coders, values) {
     if (Array.isArray(values)) {
         // do nothing
     }
@@ -729,9 +729,51 @@ function packPrefix(coders, values) {
             addrs = addrs.concat(addr);
         }
     });
-    var addressPrefix = '0x' + address_1.encodeAddrLength(addrs.length) + address_1.jionBase58ToHex(addrs);
-    return bytes_1.arrayify(addressPrefix);
+    if (addrs.length > 0) {
+        return addrs;
+    }
+    return null;
 }
+/*function packPrefix(coders: Array<Coder>, values: Array<any>): Uint8Array {
+
+    if (Array.isArray(values)) {
+        // do nothing
+
+    } else if (values && typeof(values) === 'object') {
+        var arrayValues: Array<any> = [];
+        coders.forEach(function(coder) {
+            arrayValues.push((<any>values)[coder.localName]);
+        });
+        values = arrayValues;
+
+    } else {
+        errors.throwError('invalid tuple value', errors.INVALID_ARGUMENT, {
+            coderType: 'tuple',
+            value: values
+        });
+    }
+
+    if (coders.length !== values.length) {
+        errors.throwError('types/value length mismatch', errors.INVALID_ARGUMENT, {
+            coderType: 'tuple',
+            value: values
+        });
+    }
+
+    var addrs:Array<string> = [];
+
+    coders.forEach(function(coder, index) {
+        var addr:Array<string>|null = coder.getAddress(values[index])
+        if (addr != null){
+            addrs = addrs.concat(addr);
+        }
+    });
+
+    var addressPrefix:string = '0x'+ encodeAddrLength(addrs.length)+jionBase58ToHex(addrs);
+
+    return arrayify(addressPrefix);
+
+}*/
 function unpack(coders, data, offset) {
     var baseOffset = offset;
     var consumed = 0;
@@ -880,17 +922,7 @@ var CoderTuple = /** @class */ (function (_super) {
         return _this;
     }
     CoderTuple.prototype.getAddress = function (value) {
-        var result = [];
-        for (var i = 0; i < value.length; i++) {
-            var addr = this.coders[i].getAddress(value[i]);
-            if (addr != null) {
-                result = result.concat(addr);
-            }
-        }
-        if (result.length > 0) {
-            return result;
-        }
-        return null;
+        return getAllAddress(this.coders, value);
     };
     CoderTuple.prototype.encode = function (value) {
         return pack(this.coders, value);
@@ -1053,8 +1085,12 @@ var AbiCoder = /** @class */ (function () {
             }
             coders.push(getParamCoder(this.coerceFunc, typeObject));
         }, this);
-        var addrPrefix = packPrefix(new CoderTuple(this.coerceFunc, coders, '_').coders, values);
-        return rand + bytes_1.hexlify(addrPrefix).substr(2);
+        var addrs = new CoderTuple(this.coerceFunc, coders, '_').getAddress(values);
+        if (addrs === null) {
+            addrs = [];
+        }
+        var addressPrefix = '0x' + address_1.encodeAddrLength(addrs.length) + address_1.jionBase58ToHex(addrs);
+        return rand + bytes_1.hexlify(addressPrefix).substr(2);
     };
     AbiCoder.prototype.decode = function (types, data) {
         var coders = [];

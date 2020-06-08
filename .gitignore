@@ -29,4 +29,5 @@ yarn-error.log*
 *.iml
 
 js-sero-utils/node_modules
+test/test.js
 

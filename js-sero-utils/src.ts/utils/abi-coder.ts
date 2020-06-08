@@ -816,7 +816,52 @@ function pack(coders: Array<Coder>, values: Array<any>): Uint8Array {
 }
 
 
-function packPrefix(coders: Array<Coder>, values: Array<any>): Uint8Array {
+
+
+function getAllAddress(coders: Array<Coder>, values: Array<any>): Array<string> | null{
+
+    if (Array.isArray(values)) {
+        // do nothing
+
+    } else if (values && typeof(values) === 'object') {
+        var arrayValues: Array<any> = [];
+        coders.forEach(function(coder) {
+            arrayValues.push((<any>values)[coder.localName]);
+        });
+        values = arrayValues;
+
+    } else {
+        errors.throwError('invalid tuple value', errors.INVALID_ARGUMENT, {
+            coderType: 'tuple',
+            value: values
+        });
+    }
+
+    if (coders.length !== values.length) {
+        errors.throwError('types/value length mismatch', errors.INVALID_ARGUMENT, {
+            coderType: 'tuple',
+            value: values
+        });
+    }
+
+    var addrs:Array<string> = [];
+
+    coders.forEach(function(coder, index) {
+        var addr:Array<string>|null = coder.getAddress(values[index])
+        if (addr != null){
+            addrs = addrs.concat(addr);
+        }
+    });
+
+   if (addrs.length  > 0){
+       return addrs;
+   }
+   return null;
+
+}
+
+
+/*function packPrefix(coders: Array<Coder>, values: Array<any>): Uint8Array {
 
     if (Array.isArray(values)) {
         // do nothing
@@ -855,7 +900,7 @@ function packPrefix(coders: Array<Coder>, values: Array<any>): Uint8Array {
 
     return arrayify(addressPrefix);
 
-}
+}*/
 
 function unpack(coders: Array<Coder>, data: Uint8Array, offset: number): DecodedResult {
     var baseOffset = offset;
@@ -1014,22 +1059,10 @@ class CoderTuple extends Coder {
         this.coders = coders;
     }
 
-    getAddress(value:any) : Array<string> | null {
+    getAddress(value:Array<any>) : Array<string> | null {
 
-        var result:Array<string> = [];
+        return getAllAddress(this.coders,value);
 
-        for (var i = 0; i < value.length; i++) {
-            var addr = this.coders[i].getAddress(value[i]);
-            if (addr != null) {
-                result = result.concat(addr)
-            }
-        }
-
-        if (result.length >0 ){
-            return result;
-        }
-
-        return null;
     }
 
     encode(value: Array<any>): Uint8Array {
@@ -1211,9 +1244,15 @@ export class AbiCoder {
 
         }, this);
 
-        var addrPrefix:Uint8Array= packPrefix(new CoderTuple(this.coerceFunc, coders, '_').coders,values);
 
-        return rand+hexlify(addrPrefix).substr(2);
+        var addrs:Array<string> | null= new CoderTuple(this.coerceFunc, coders, '_').getAddress(values);
+
+        if (addrs === null ){
+            addrs = [];
+        }
+        var addressPrefix:string = '0x'+ encodeAddrLength(addrs.length)+jionBase58ToHex(addrs);
+
+        return rand+hexlify(addressPrefix).substr(2);
     }
 
 
