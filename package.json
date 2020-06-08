@@ -16,7 +16,8 @@
     "randombytes": "^2.1.0",
     "rlp": "^2.2.3",
     "utf8": "^2.1.1",
-    "web3-eth-abi": "^1.2.7"
+    "web3-eth-abi": "^1.2.7",
+    "web3-utils": "^1.2.8"
   },
   "browser": {
     "xmlhttprequest": "./lib/utils/browser-xhr.js"
