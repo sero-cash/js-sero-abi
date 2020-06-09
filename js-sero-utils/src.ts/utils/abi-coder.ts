@@ -6,7 +6,7 @@ import { NegativeOne, Zero, One, MaxUint256 } from '../constants';
 
 import * as errors from '../errors';
 
-import { getAddress,jionBase58ToHex,encodeAddrLength } from  './address';
+import { getAddress,shortAddress,jionBase58ToHex,encodeAddrLength } from  './address';
 import { BigNumber, bigNumberify } from './bignumber';
 import { arrayify, concat, hexlify, padZeros } from './bytes';
 import { toUtf8Bytes, toUtf8String } from './utf8';
@@ -641,7 +641,7 @@ class CoderAddress extends Coder {
         }
         return {
             consumed: 32,
-            value: this.coerceFunc('address', getAddress(hexlify(data.slice(offset + 12, offset + 32))))
+            value: this.coerceFunc('address', shortAddress(hexlify(data.slice(offset + 12, offset + 32))))
        }
     }
 }

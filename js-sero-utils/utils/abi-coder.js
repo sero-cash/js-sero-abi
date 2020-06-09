@@ -542,7 +542,7 @@ var CoderAddress = /** @class */ (function (_super) {
         }
         return {
             consumed: 32,
-            value: this.coerceFunc('address', address_1.getAddress(bytes_1.hexlify(data.slice(offset + 12, offset + 32))))
+            value: this.coerceFunc('address', address_1.shortAddress(bytes_1.hexlify(data.slice(offset + 12, offset + 32))))
         };
     };
     return CoderAddress;

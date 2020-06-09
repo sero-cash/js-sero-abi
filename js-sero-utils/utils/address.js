@@ -33,6 +33,16 @@ function getAddress(address) {
     return null;
 }
 exports.getAddress = getAddress;
+function shortAddress(address) {
+    if (typeof (address) !== 'string') {
+        errors.throwError('invalid address', errors.INVALID_ARGUMENT, { arg: 'address', value: address });
+    }
+    if (!address.match(/^(0x)?[0-9a-fA-F]{40}$/)) {
+        errors.throwError('invalid address', errors.INVALID_ARGUMENT, { arg: 'address', value: address });
+    }
+    return address;
+}
+exports.shortAddress = shortAddress;
 function base58ToHex(address) {
     return bs58.decode(address).toString('hex');
 }
