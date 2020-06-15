@@ -1,5 +1,6 @@
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.randomBytes = void 0;
 var bytes_1 = require("./bytes");
 var crypto_1 = require("crypto");
 function randomBytes(length) {

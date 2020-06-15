@@ -1,5 +1,6 @@
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.parseBytes32String = exports.formatBytes32String = exports.toUtf8String = exports.toUtf8Bytes = exports.UnicodeNormalizationForm = void 0;
 var constants_1 = require("../constants");
 var errors_1 = require("../errors");
 var bytes_1 = require("./bytes");

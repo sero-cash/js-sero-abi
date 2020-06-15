@@ -1,6 +1,7 @@
 "use strict";
 //See: https://github.com/ethereum/wiki/wiki/RLP
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.decode = exports.encode = void 0;
 var bytes_1 = require("./bytes");
 function arrayifyInteger(value) {
     var result = [];
