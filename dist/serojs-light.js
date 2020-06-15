@@ -1,11 +1,13 @@
 require=(function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.version = void 0;
 exports.version = "0.0.1";
 
 },{}],2:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.MaxUint256 = exports.Two = exports.One = exports.Zero = exports.NegativeOne = exports.HashZero = exports.AddressZero = void 0;
 var bignumber_1 = require("./utils/bignumber");
 var AddressZero = '0x0000000000000000000000000000000000000000';
 exports.AddressZero = AddressZero;
@@ -25,6 +27,7 @@ exports.MaxUint256 = MaxUint256;
 },{"./utils/bignumber":29}],3:[function(require,module,exports){
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.info = exports.warn = exports.setLogLevel = exports.checkNormalize = exports.setCensorship = exports.checkArgumentCount = exports.checkNew = exports.throwError = exports.UNSUPPORTED_OPERATION = exports.REPLACEMENT_UNDERPRICED = exports.NONCE_EXPIRED = exports.INSUFFICIENT_FUNDS = exports.NUMERIC_FAULT = exports.UNEXPECTED_ARGUMENT = exports.MISSING_ARGUMENT = exports.INVALID_ARGUMENT = exports.CALL_EXCEPTION = exports.MISSING_NEW = exports.NOT_IMPLEMENTED = exports.UNKNOWN_ERROR = void 0;
 var _version_1 = require("./_version");
 // Unknown Error
 exports.UNKNOWN_ERROR = 'UNKNOWN_ERROR';
@@ -6081,23 +6084,39 @@ SafeBuffer.allocUnsafeSlow = function (size) {
 },{"buffer":131}],27:[function(require,module,exports){
 'use strict';
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
 var __importStar = (this && this.__importStar) || function (mod) {
     if (mod && mod.__esModule) return mod;
     var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.defaultAbiCoder = exports.AbiCoder = exports.parseSignature = exports.formatSignature = exports.formatParamType = exports.parseParamType = exports.defaultCoerceFunc = void 0;
 // See: https://github.com/ethereum/wiki/wiki/Ethereum-Contract-ABI
 var constants_1 = require("../constants");
 var errors = __importStar(require("../errors"));
@@ -7196,6 +7215,7 @@ exports.defaultAbiCoder = new AbiCoder();
 },{"../constants":2,"../errors":3,"./address":28,"./bignumber":29,"./bytes":30,"./properties":35,"./utf8":41}],28:[function(require,module,exports){
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.encodeAddrLength = exports.jionBase58ToHex = exports.base58ToHex = exports.shortAddress = exports.getAddress = exports.isStrictAddress = exports.padLeft = void 0;
 var errors = require("../errors");
 var bignumber_1 = require("./bignumber");
 var bs58 = require('bs58');
@@ -7263,17 +7283,30 @@ exports.encodeAddrLength = encodeAddrLength;
 
 },{"../errors":3,"./bignumber":29,"blake2b":7,"bs58":9}],29:[function(require,module,exports){
 'use strict';
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
 var __importStar = (this && this.__importStar) || function (mod) {
     if (mod && mod.__esModule) return mod;
     var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
     return result;
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.bigNumberify = exports.BigNumber = void 0;
 /**
  *  BigNumber
  *
@@ -7453,14 +7486,27 @@ exports.bigNumberify = bigNumberify;
  *  Conversion Utilities
  *
  */
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
 var __importStar = (this && this.__importStar) || function (mod) {
     if (mod && mod.__esModule) return mod;
     var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.joinSignature = exports.splitSignature = exports.hexZeroPad = exports.hexStripZeros = exports.hexDataSlice = exports.hexDataLength = exports.hexlify = exports.isHexString = exports.padZeros = exports.stripZeros = exports.concat = exports.arrayify = exports.isArrayish = exports.isHexable = void 0;
 var errors = __importStar(require("../errors"));
 ///////////////////////////////
 function isHexable(value) {
@@ -7726,14 +7772,27 @@ exports.joinSignature = joinSignature;
 
 },{"../errors":3}],31:[function(require,module,exports){
 'use strict';
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
 var __importStar = (this && this.__importStar) || function (mod) {
     if (mod && mod.__esModule) return mod;
     var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.hashMessage = exports.id = exports.namehash = void 0;
 var errors = __importStar(require("../errors"));
 var bytes_1 = require("./bytes");
 var utf8_1 = require("./utf8");
@@ -7785,97 +7844,126 @@ exports.hashMessage = hashMessage;
 
 },{"../errors":3,"./bytes":30,"./keccak256":34,"./utf8":41}],32:[function(require,module,exports){
 'use strict';
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
 var __importStar = (this && this.__importStar) || function (mod) {
     if (mod && mod.__esModule) return mod;
     var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.UnicodeNormalizationForm = exports.joinSignature = exports.splitSignature = exports.soliditySha256 = exports.solidityKeccak256 = exports.solidityPack = exports.randomBytes = exports.sha256 = exports.keccak256 = exports.commify = exports.parseUnits = exports.formatUnits = exports.getAddress = exports.id = exports.namehash = exports.hashMessage = exports.parseBytes32String = exports.formatBytes32String = exports.toUtf8String = exports.toUtf8Bytes = exports.hexDataSlice = exports.hexDataLength = exports.hexZeroPad = exports.hexStripZeros = exports.isHexString = exports.hexlify = exports.bigNumberify = exports.BigNumber = exports.Interface = exports.stripZeros = exports.padZeros = exports.concat = exports.arrayify = exports.shallowCopy = exports.resolveProperties = exports.defineReadOnly = exports.deepCopy = exports.checkProperties = exports.RLP = exports.parseParamType = exports.parseSignature = exports.formatParamType = exports.formatSignature = exports.defaultAbiCoder = exports.AbiCoder = void 0;
 var abi_coder_1 = require("./abi-coder");
-exports.AbiCoder = abi_coder_1.AbiCoder;
-exports.defaultAbiCoder = abi_coder_1.defaultAbiCoder;
-exports.formatSignature = abi_coder_1.formatSignature;
-exports.formatParamType = abi_coder_1.formatParamType;
-exports.parseSignature = abi_coder_1.parseSignature;
-exports.parseParamType = abi_coder_1.parseParamType;
+Object.defineProperty(exports, "AbiCoder", { enumerable: true, get: function () { return abi_coder_1.AbiCoder; } });
+Object.defineProperty(exports, "defaultAbiCoder", { enumerable: true, get: function () { return abi_coder_1.defaultAbiCoder; } });
+Object.defineProperty(exports, "formatSignature", { enumerable: true, get: function () { return abi_coder_1.formatSignature; } });
+Object.defineProperty(exports, "formatParamType", { enumerable: true, get: function () { return abi_coder_1.formatParamType; } });
+Object.defineProperty(exports, "parseSignature", { enumerable: true, get: function () { return abi_coder_1.parseSignature; } });
+Object.defineProperty(exports, "parseParamType", { enumerable: true, get: function () { return abi_coder_1.parseParamType; } });
 var address_1 = require("./address");
-exports.getAddress = address_1.getAddress;
+Object.defineProperty(exports, "getAddress", { enumerable: true, get: function () { return address_1.getAddress; } });
 var bignumber_1 = require("./bignumber");
-exports.BigNumber = bignumber_1.BigNumber;
-exports.bigNumberify = bignumber_1.bigNumberify;
+Object.defineProperty(exports, "BigNumber", { enumerable: true, get: function () { return bignumber_1.BigNumber; } });
+Object.defineProperty(exports, "bigNumberify", { enumerable: true, get: function () { return bignumber_1.bigNumberify; } });
 var bytes_1 = require("./bytes");
-exports.arrayify = bytes_1.arrayify;
-exports.concat = bytes_1.concat;
-exports.hexDataSlice = bytes_1.hexDataSlice;
-exports.hexDataLength = bytes_1.hexDataLength;
-exports.hexlify = bytes_1.hexlify;
-exports.hexStripZeros = bytes_1.hexStripZeros;
-exports.hexZeroPad = bytes_1.hexZeroPad;
-exports.isHexString = bytes_1.isHexString;
-exports.joinSignature = bytes_1.joinSignature;
-exports.padZeros = bytes_1.padZeros;
-exports.splitSignature = bytes_1.splitSignature;
-exports.stripZeros = bytes_1.stripZeros;
+Object.defineProperty(exports, "arrayify", { enumerable: true, get: function () { return bytes_1.arrayify; } });
+Object.defineProperty(exports, "concat", { enumerable: true, get: function () { return bytes_1.concat; } });
+Object.defineProperty(exports, "hexDataSlice", { enumerable: true, get: function () { return bytes_1.hexDataSlice; } });
+Object.defineProperty(exports, "hexDataLength", { enumerable: true, get: function () { return bytes_1.hexDataLength; } });
+Object.defineProperty(exports, "hexlify", { enumerable: true, get: function () { return bytes_1.hexlify; } });
+Object.defineProperty(exports, "hexStripZeros", { enumerable: true, get: function () { return bytes_1.hexStripZeros; } });
+Object.defineProperty(exports, "hexZeroPad", { enumerable: true, get: function () { return bytes_1.hexZeroPad; } });
+Object.defineProperty(exports, "isHexString", { enumerable: true, get: function () { return bytes_1.isHexString; } });
+Object.defineProperty(exports, "joinSignature", { enumerable: true, get: function () { return bytes_1.joinSignature; } });
+Object.defineProperty(exports, "padZeros", { enumerable: true, get: function () { return bytes_1.padZeros; } });
+Object.defineProperty(exports, "splitSignature", { enumerable: true, get: function () { return bytes_1.splitSignature; } });
+Object.defineProperty(exports, "stripZeros", { enumerable: true, get: function () { return bytes_1.stripZeros; } });
 var hash_1 = require("./hash");
-exports.hashMessage = hash_1.hashMessage;
-exports.id = hash_1.id;
-exports.namehash = hash_1.namehash;
+Object.defineProperty(exports, "hashMessage", { enumerable: true, get: function () { return hash_1.hashMessage; } });
+Object.defineProperty(exports, "id", { enumerable: true, get: function () { return hash_1.id; } });
+Object.defineProperty(exports, "namehash", { enumerable: true, get: function () { return hash_1.namehash; } });
 var interface_1 = require("./interface");
-exports.Interface = interface_1.Interface;
+Object.defineProperty(exports, "Interface", { enumerable: true, get: function () { return interface_1.Interface; } });
 var keccak256_1 = require("./keccak256");
-exports.keccak256 = keccak256_1.keccak256;
+Object.defineProperty(exports, "keccak256", { enumerable: true, get: function () { return keccak256_1.keccak256; } });
 var sha2_1 = require("./sha2");
-exports.sha256 = sha2_1.sha256;
+Object.defineProperty(exports, "sha256", { enumerable: true, get: function () { return sha2_1.sha256; } });
 var solidity_1 = require("./solidity");
-exports.solidityKeccak256 = solidity_1.keccak256;
-exports.solidityPack = solidity_1.pack;
-exports.soliditySha256 = solidity_1.sha256;
+Object.defineProperty(exports, "solidityKeccak256", { enumerable: true, get: function () { return solidity_1.keccak256; } });
+Object.defineProperty(exports, "solidityPack", { enumerable: true, get: function () { return solidity_1.pack; } });
+Object.defineProperty(exports, "soliditySha256", { enumerable: true, get: function () { return solidity_1.sha256; } });
 var random_bytes_1 = require("./random-bytes");
-exports.randomBytes = random_bytes_1.randomBytes;
+Object.defineProperty(exports, "randomBytes", { enumerable: true, get: function () { return random_bytes_1.randomBytes; } });
 var properties_1 = require("./properties");
-exports.checkProperties = properties_1.checkProperties;
-exports.deepCopy = properties_1.deepCopy;
-exports.defineReadOnly = properties_1.defineReadOnly;
-exports.resolveProperties = properties_1.resolveProperties;
-exports.shallowCopy = properties_1.shallowCopy;
+Object.defineProperty(exports, "checkProperties", { enumerable: true, get: function () { return properties_1.checkProperties; } });
+Object.defineProperty(exports, "deepCopy", { enumerable: true, get: function () { return properties_1.deepCopy; } });
+Object.defineProperty(exports, "defineReadOnly", { enumerable: true, get: function () { return properties_1.defineReadOnly; } });
+Object.defineProperty(exports, "resolveProperties", { enumerable: true, get: function () { return properties_1.resolveProperties; } });
+Object.defineProperty(exports, "shallowCopy", { enumerable: true, get: function () { return properties_1.shallowCopy; } });
 var RLP = __importStar(require("./rlp"));
 exports.RLP = RLP;
 var utf8_1 = require("./utf8");
-exports.formatBytes32String = utf8_1.formatBytes32String;
-exports.parseBytes32String = utf8_1.parseBytes32String;
-exports.toUtf8Bytes = utf8_1.toUtf8Bytes;
-exports.toUtf8String = utf8_1.toUtf8String;
+Object.defineProperty(exports, "formatBytes32String", { enumerable: true, get: function () { return utf8_1.formatBytes32String; } });
+Object.defineProperty(exports, "parseBytes32String", { enumerable: true, get: function () { return utf8_1.parseBytes32String; } });
+Object.defineProperty(exports, "toUtf8Bytes", { enumerable: true, get: function () { return utf8_1.toUtf8Bytes; } });
+Object.defineProperty(exports, "toUtf8String", { enumerable: true, get: function () { return utf8_1.toUtf8String; } });
 var units_1 = require("./units");
-exports.commify = units_1.commify;
-exports.formatUnits = units_1.formatUnits;
-exports.parseUnits = units_1.parseUnits;
+Object.defineProperty(exports, "commify", { enumerable: true, get: function () { return units_1.commify; } });
+Object.defineProperty(exports, "formatUnits", { enumerable: true, get: function () { return units_1.formatUnits; } });
+Object.defineProperty(exports, "parseUnits", { enumerable: true, get: function () { return units_1.parseUnits; } });
 ////////////////////////
 // Enums
 var utf8_2 = require("./utf8");
-exports.UnicodeNormalizationForm = utf8_2.UnicodeNormalizationForm;
+Object.defineProperty(exports, "UnicodeNormalizationForm", { enumerable: true, get: function () { return utf8_2.UnicodeNormalizationForm; } });
 
 },{"./abi-coder":27,"./address":28,"./bignumber":29,"./bytes":30,"./hash":31,"./interface":33,"./keccak256":34,"./properties":35,"./random-bytes":36,"./rlp":37,"./sha2":38,"./solidity":39,"./units":40,"./utf8":41}],33:[function(require,module,exports){
 'use strict';
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
 var __importStar = (this && this.__importStar) || function (mod) {
     if (mod && mod.__esModule) return mod;
     var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Interface = void 0;
 // See: https://github.com/ethereum/wiki/wiki/Ethereum-Contract-ABI
 var address_1 = require("./address");
 var abi_coder_1 = require("./abi-coder");
@@ -8259,6 +8347,7 @@ exports.Interface = Interface;
 },{"../errors":3,"./abi-coder":27,"./address":28,"./bignumber":29,"./bytes":30,"./hash":31,"./keccak256":34,"./properties":35}],34:[function(require,module,exports){
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.keccak256 = void 0;
 var sha3 = require("js-sha3");
 var bytes_1 = require("./bytes");
 function keccak256(data) {
@@ -8268,14 +8357,27 @@ exports.keccak256 = keccak256;
 
 },{"./bytes":30,"js-sha3":23}],35:[function(require,module,exports){
 'use strict';
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
 var __importStar = (this && this.__importStar) || function (mod) {
     if (mod && mod.__esModule) return mod;
     var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.inheritable = exports.deepCopy = exports.shallowCopy = exports.checkProperties = exports.resolveProperties = exports.isType = exports.setType = exports.defineReadOnly = void 0;
 var errors = __importStar(require("../errors"));
 function defineReadOnly(object, name, value) {
     Object.defineProperty(object, name, {
@@ -8409,6 +8511,7 @@ exports.inheritable = inheritable;
 },{"../errors":3}],36:[function(require,module,exports){
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.randomBytes = void 0;
 var bytes_1 = require("./bytes");
 var crypto_1 = require("crypto");
 function randomBytes(length) {
@@ -8420,6 +8523,7 @@ exports.randomBytes = randomBytes;
 "use strict";
 //See: https://github.com/ethereum/wiki/wiki/RLP
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.decode = exports.encode = void 0;
 var bytes_1 = require("./bytes");
 function arrayifyInteger(value) {
     var result = [];
@@ -8540,6 +8644,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.sha512 = exports.sha256 = exports.ripemd160 = void 0;
 var hash_js_1 = __importDefault(require("hash.js"));
 var bytes_1 = require("./bytes");
 function ripemd160(data) {
@@ -8558,6 +8663,7 @@ exports.sha512 = sha512;
 },{"./bytes":30,"hash.js":10}],39:[function(require,module,exports){
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.sha256 = exports.keccak256 = exports.pack = void 0;
 var bignumber_1 = require("./bignumber");
 var bytes_1 = require("./bytes");
 var utf8_1 = require("./utf8");
@@ -8650,14 +8756,27 @@ exports.sha256 = sha256;
 
 },{"./bignumber":29,"./bytes":30,"./keccak256":34,"./sha2":38,"./utf8":41}],40:[function(require,module,exports){
 'use strict';
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
 var __importStar = (this && this.__importStar) || function (mod) {
     if (mod && mod.__esModule) return mod;
     var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.parseUnits = exports.formatUnits = exports.commify = void 0;
 var constants_1 = require("../constants");
 var errors = __importStar(require("../errors"));
 var bignumber_1 = require("./bignumber");
@@ -8818,6 +8937,7 @@ exports.parseUnits = parseUnits;
 },{"../constants":2,"../errors":3,"./bignumber":29}],41:[function(require,module,exports){
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.parseBytes32String = exports.formatBytes32String = exports.toUtf8String = exports.toUtf8Bytes = exports.UnicodeNormalizationForm = void 0;
 var constants_1 = require("../constants");
 var errors_1 = require("../errors");
 var bytes_1 = require("./bytes");

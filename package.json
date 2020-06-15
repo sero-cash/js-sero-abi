@@ -1,7 +1,7 @@
 {
   "name": "serojs",
   "namespace": "sero",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "sero js tool",
   "main": "./index.js",
   "directories": {
