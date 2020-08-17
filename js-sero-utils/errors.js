@@ -1,6 +1,5 @@
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.info = exports.warn = exports.setLogLevel = exports.checkNormalize = exports.setCensorship = exports.checkArgumentCount = exports.checkNew = exports.throwError = exports.UNSUPPORTED_OPERATION = exports.REPLACEMENT_UNDERPRICED = exports.NONCE_EXPIRED = exports.INSUFFICIENT_FUNDS = exports.NUMERIC_FAULT = exports.UNEXPECTED_ARGUMENT = exports.MISSING_ARGUMENT = exports.INVALID_ARGUMENT = exports.CALL_EXCEPTION = exports.MISSING_NEW = exports.NOT_IMPLEMENTED = exports.UNKNOWN_ERROR = void 0;
 var _version_1 = require("./_version");
 // Unknown Error
 exports.UNKNOWN_ERROR = 'UNKNOWN_ERROR';

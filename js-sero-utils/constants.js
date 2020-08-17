@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.MaxUint256 = exports.Two = exports.One = exports.Zero = exports.NegativeOne = exports.HashZero = exports.AddressZero = void 0;
 var bignumber_1 = require("./utils/bignumber");
 var AddressZero = '0x0000000000000000000000000000000000000000';
 exports.AddressZero = AddressZero;
