@@ -1,7 +1,7 @@
 /* jshint ignore:start */
 Package.describe({
   name: 'sero:serojs',
-  version: '0.0.4',
+  version: '0.0.6',
   summary: 'sero js tools',
   // By default, Meteor will default to using README.md for documentation.
   // To avoid submitting documentation, set this field to null.
